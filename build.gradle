@@ -1,0 +1,20 @@
+task hello {
+    doLast {
+        println 'Hello world!'
+    }
+}
+task hello2 << {
+    String greeting = 'hello from Ant'
+    ant.echo(message: greeting)
+}
+
+ant.importBuild 'build.xml'
+
+task intro(dependsOn: hello_ant) << {
+    println 'Hello, from Gradle'
+}
+
+task doallwrap(dependsOn: doitall) << {
+    println 'Calling do it all in ant...'
+}
+
